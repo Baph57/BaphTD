@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class EditorSnap : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    //comment to test VC
-    // Update is called once per frame
     void Update()
     {
-        
+        Vector3 snapPosition;
+        //
+        snapPosition.x = Mathf.RoundToInt(transform.position.x / 10f) * 10f;
+        snapPosition.z = 0f;
+
+        transform.position = new Vector3(snapPosition.x, 0f, snapPosition.z);
     }
 }
