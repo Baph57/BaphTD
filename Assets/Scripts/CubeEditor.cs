@@ -21,7 +21,11 @@ public class CubeEditor : MonoBehaviour
 
         //label on top of box for coordinates
         coordinateTextMesh = GetComponentInChildren<TextMesh>();
-        coordinateTextMesh.text = snapPosition.x + "," + snapPosition.z;
+        string editorTextLabel = snapPosition.x / gridSize + "," + snapPosition.z / gridSize;
+        coordinateTextMesh.text = editorTextLabel;
+
+        //fairly self documenting, but labels the cube in the editor with coords
+        gameObject.name = editorTextLabel;
     }
 
 }
