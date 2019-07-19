@@ -15,15 +15,20 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    //IEnumerator is essentially a Co-Routine
     IEnumerator WaypointReader() //co-routine
     {
+        print("Starting Patrol SIR!");
         //reference to every block in the enemy path 
         foreach (Waypointer waypoint in EnemyPath)
         {
             transform.position = waypoint.transform.position;
-            //yield 
+            //yield says to wait for the next loop iteration until the yield
+            //resolves essentially. WaitForSeconds is available thru Unity.API
+            print("Patrol Pos: " + waypoint.name);
             yield return new WaitForSeconds(1f);
         }
+        print("Ending Patrol SIR!");
     }
 
     // Update is called once per frame
