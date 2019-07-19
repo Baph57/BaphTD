@@ -5,20 +5,48 @@ using UnityEngine;
 [ExecuteInEditMode]
 //SelectionBase means that whatever the script is attached to is the "default" item/prefab
 //to grab when clicked on in the editor
-[SelectionBase] 
+[SelectionBase]
+[RequireComponent(typeof(Waypointer))]
+
 public class CubeEditor : MonoBehaviour
 {
-    [Range(1f, 20f)][SerializeField] float gridSize = 10f;
+    //refactoring to have Waypointer not rely on CubeEditor
+    // [Range(1f, 20f)][SerializeField] float gridSize = 10f;
 
+
+
+    //instance variables
     TextMesh coordinateTextMesh;
+    Vector3 snapPosition;
+    Waypointer waypointer;
+
+    //member variables
+    int gridSize;
+
+
+
+    private void Awake()
+    {
+        waypointer = GetComponent<Waypointer>();
+    }
 
     void Update()
     {
-        Vector3 snapPosition;
-        snapPosition.x = Mathf.RoundToInt(transform.position.x / gridSize) * gridSize;
-        snapPosition.z = Mathf.RoundToInt(transform.position.z / gridSize) * gridSize;
-        transform.position = new Vector3(snapPosition.x, 0f, snapPosition.z);
+        gridSize = waypointer.GetGridSize();
+        SnapToGrid();
+        DisplayCoordTextMesh();
+    }
 
+    private void SnapToGrid()
+    {
+        //int gridSize = waypointer.GetGridSize();
+        Vector2 gridSnap = waypointer.GetGridPosition();
+        //gridSnap.y is actually the z plane
+        transform.position = new Vector3(gridSnap.x, 0f, gridSnap.y);
+    }
+
+    private void DisplayCoordTextMesh()
+    {
         //label on top of box for coordinates
         coordinateTextMesh = GetComponentInChildren<TextMesh>();
         string editorTextLabel = snapPosition.x / gridSize + "," + snapPosition.z / gridSize;
@@ -27,5 +55,4 @@ public class CubeEditor : MonoBehaviour
         //fairly self documenting, but labels the cube in the editor with coords
         gameObject.name = editorTextLabel;
     }
-
 }

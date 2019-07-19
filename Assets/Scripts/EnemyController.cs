@@ -31,9 +31,4 @@ public class EnemyController : MonoBehaviour
         print("Ending Patrol SIR!");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
