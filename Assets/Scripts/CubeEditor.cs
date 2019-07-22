@@ -16,7 +16,6 @@ public class CubeEditor : MonoBehaviour
 
 
     //instance variables
-    TextMesh coordinateTextMesh;
     Vector3 snapPosition;
     Waypointer waypointer;
 
@@ -34,7 +33,7 @@ public class CubeEditor : MonoBehaviour
     {
         gridSize = waypointer.GetGridSize();
         SnapToGrid();
-        DisplayCoordTextMesh();
+        waypointer.DisplayCoordTextMesh();
     }
 
     private void SnapToGrid()
@@ -45,14 +44,14 @@ public class CubeEditor : MonoBehaviour
         transform.position = new Vector3(gridSnap.x, 0f, gridSnap.y);
     }
 
-    private void DisplayCoordTextMesh()
-    {
-        //label on top of box for coordinates
-        coordinateTextMesh = GetComponentInChildren<TextMesh>();
-        string editorTextLabel = snapPosition.x / gridSize + "," + snapPosition.z / gridSize;
-        coordinateTextMesh.text = editorTextLabel;
+    //private void DisplayCoordTextMesh()
+    //{
+    //    //label on top of box for coordinates
+    //    TextMesh coordinateTextMesh = GetComponentInChildren<TextMesh>();
+    //    string editorTextLabel = snapPosition.x / gridSize + "," + snapPosition.z / gridSize;
+    //    coordinateTextMesh.text = editorTextLabel;
 
-        //fairly self documenting, but labels the cube in the editor with coords
-        gameObject.name = editorTextLabel;
-    }
+    //    //fairly self documenting, but labels the cube in the editor with coords
+    //    gameObject.name = editorTextLabel;
+    //}
 }
