@@ -5,6 +5,8 @@ using UnityEngine;
 public class Waypointer : MonoBehaviour
 {
 
+    public bool blockHasBeenExplored = false; //ok as is, as data class
+
     Vector2Int gridPosition;
     const int gridSize = 10;
     // Start is called before the first frame update

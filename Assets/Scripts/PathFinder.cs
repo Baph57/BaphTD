@@ -37,7 +37,6 @@ public class PathFinder : MonoBehaviour
     void Start()
     {
         LoadBlocks();
-        //CalculatePossibleDirections();
         PathFindingController();
     }
 
@@ -45,31 +44,31 @@ public class PathFinder : MonoBehaviour
     {
         waypointQueue.Enqueue(startWaypoint);
 
-        while(waypointQueue.Count > 0)
+        while(waypointQueue.Count > 0 && isRunning)
         {
             var originSearch = waypointQueue.Dequeue();
-            OriginEqualsFinishCatch(originSearch);
+            originSearch.blockHasBeenExplored = true;
+            CalculatePossibleDirections(originSearch);
         }
         print("pathfinding done?");
     }
 
-    private void OriginEqualsFinishCatch(Waypointer originSearch)
+    private void CalculatePossibleDirections(Waypointer prevWaypoint)
     {
-        if(originSearch == endWaypoint)
+        if (!isRunning) { return; }
+
+        if (prevWaypoint == endWaypoint)
         {
-            print("stopping cause we at the end"); //todo remove later
+            print("stopping");
             isRunning = false;
         }
-    }
 
-    private void CalculatePossibleDirections()
-    {
         foreach(Vector2Int possibleMove in cardinalMovements)
         {
             //looping and taking the StartWaypoint and setting it so it's grabbing
             //the actual coordinates instead of the integer values that represent the
             //arithmetic responsible (0,1) -> (3,4)
-            Vector2Int explorationCoordinates = startWaypoint.GetGridPosition() + possibleMove;
+            Vector2Int explorationCoordinates = prevWaypoint.GetGridPosition() + possibleMove;
             //print("exploring " + explorationCoordinates);
 
             //using bracket notation, we can reference these coordinates in our dictionary
@@ -77,7 +76,13 @@ public class PathFinder : MonoBehaviour
             //as a valid navigation path
             try
             {
-            grid[explorationCoordinates].SetTopColor(Color.blue);
+                Waypointer neighbor = grid[explorationCoordinates];
+                if (!neighbor.blockHasBeenExplored)
+                {
+                neighbor.SetTopColor(Color.blue);//todo move later
+                waypointQueue.Enqueue(neighbor);
+                print("Queueing Neighbor: " + neighbor);
+                }
             }
             catch
             {
