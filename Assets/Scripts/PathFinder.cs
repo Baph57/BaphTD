@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class PathFinder : MonoBehaviour
 {
-
+    //Dictionary DataStructure, similar to objects in js
     Dictionary<Vector2Int, Waypointer> grid = new Dictionary<Vector2Int, Waypointer>();
+
+    //creating a queue for our waypointers, another different data type!
+    Queue<Waypointer> waypointQueue = new Queue<Waypointer>();
+
 
     //array of possible directions for navagation AI/pathfinding
     Vector2Int[] cardinalMovements =
@@ -16,6 +20,9 @@ public class PathFinder : MonoBehaviour
         Vector2Int.down,
         Vector2Int.left
     };
+
+    //state variable
+    [SerializeField]bool isRunning = true; //todo make private
 
 
 
@@ -30,7 +37,29 @@ public class PathFinder : MonoBehaviour
     void Start()
     {
         LoadBlocks();
-        CalculatePossibleDirections();
+        //CalculatePossibleDirections();
+        PathFindingController();
+    }
+
+    private void PathFindingController()
+    {
+        waypointQueue.Enqueue(startWaypoint);
+
+        while(waypointQueue.Count > 0)
+        {
+            var originSearch = waypointQueue.Dequeue();
+            OriginEqualsFinishCatch(originSearch);
+        }
+        print("pathfinding done?");
+    }
+
+    private void OriginEqualsFinishCatch(Waypointer originSearch)
+    {
+        if(originSearch == endWaypoint)
+        {
+            print("stopping cause we at the end"); //todo remove later
+            isRunning = false;
+        }
     }
 
     private void CalculatePossibleDirections()
@@ -46,7 +75,14 @@ public class PathFinder : MonoBehaviour
             //using bracket notation, we can reference these coordinates in our dictionary
             //then finally set the color to blue to signify we are evaluating it's position
             //as a valid navigation path
+            try
+            {
             grid[explorationCoordinates].SetTopColor(Color.blue);
+            }
+            catch
+            {
+                print("doesn't exist!");
+            }
         }
     }
 
