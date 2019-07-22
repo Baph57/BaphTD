@@ -41,17 +41,7 @@ public class CubeEditor : MonoBehaviour
         //int gridSize = waypointer.GetGridSize();
         Vector2 gridSnap = waypointer.GetGridPosition();
         //gridSnap.y is actually the z plane
-        transform.position = new Vector3(gridSnap.x, 0f, gridSnap.y);
+        transform.position = new Vector3(gridSnap.x * gridSize, 0f, gridSnap.y * gridSize);
     }
 
-    //private void DisplayCoordTextMesh()
-    //{
-    //    //label on top of box for coordinates
-    //    TextMesh coordinateTextMesh = GetComponentInChildren<TextMesh>();
-    //    string editorTextLabel = snapPosition.x / gridSize + "," + snapPosition.z / gridSize;
-    //    coordinateTextMesh.text = editorTextLabel;
-
-    //    //fairly self documenting, but labels the cube in the editor with coords
-    //    gameObject.name = editorTextLabel;
-    //}
 }
