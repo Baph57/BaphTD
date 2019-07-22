@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
             transform.position = waypoint.transform.position;
             //yield says to wait for the next loop iteration until the yield
             //resolves essentially. WaitForSeconds is available thru Unity.API
-            print("Patrol Pos: " + waypoint.name);
+            //print("Patrol Pos: " + waypoint.name);
             yield return new WaitForSeconds(1f);
         }
         print("Ending Patrol SIR!");
