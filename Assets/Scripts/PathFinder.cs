@@ -21,9 +21,9 @@ public class PathFinder : MonoBehaviour
         Vector2Int.left
     };
 
-    //state variable
+    //state variables
     [SerializeField]bool isRunning = true; //todo make private
-
+    Waypointer originSearch; //curent search center for state
 
 
     //works amazingly well, seems C# and Unity work very closely together
@@ -46,20 +46,17 @@ public class PathFinder : MonoBehaviour
 
         while(waypointQueue.Count > 0 && isRunning)
         {
-            var originSearch = waypointQueue.Dequeue();
+            originSearch = waypointQueue.Dequeue();
             originSearch.blockHasBeenExplored = true;
-            CalculatePossibleDirections(originSearch);
+            CalculatePossibleDirections();
         }
-        print("pathfinding done?");
     }
 
-    private void CalculatePossibleDirections(Waypointer prevWaypoint)
+    private void CalculatePossibleDirections()
     {
         if (!isRunning) { return; }
-
-        if (prevWaypoint == endWaypoint)
+        if (originSearch == endWaypoint)
         {
-            print("stopping");
             isRunning = false;
         }
 
@@ -68,7 +65,7 @@ public class PathFinder : MonoBehaviour
             //looping and taking the StartWaypoint and setting it so it's grabbing
             //the actual coordinates instead of the integer values that represent the
             //arithmetic responsible (0,1) -> (3,4)
-            Vector2Int explorationCoordinates = prevWaypoint.GetGridPosition() + possibleMove;
+            Vector2Int explorationCoordinates = originSearch.GetGridPosition() + possibleMove;
             //print("exploring " + explorationCoordinates);
 
             //using bracket notation, we can reference these coordinates in our dictionary
@@ -77,11 +74,12 @@ public class PathFinder : MonoBehaviour
             try
             {
                 Waypointer neighbor = grid[explorationCoordinates];
-                if (!neighbor.blockHasBeenExplored)
-                {
-                neighbor.SetTopColor(Color.blue);//todo move later
+                if (neighbor.blockHasBeenExplored || waypointQueue.Contains(neighbor)){ /**/ }
+                else
+                { 
+                //neighbor.SetTopColor(Color.blue);//todo move later
                 waypointQueue.Enqueue(neighbor);
-                print("Queueing Neighbor: " + neighbor);
+                neighbor.previouslyAccessedWaypoint = originSearch;
                 }
             }
             catch

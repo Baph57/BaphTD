@@ -5,10 +5,18 @@ using UnityEngine;
 public class Waypointer : MonoBehaviour
 {
 
-    public bool blockHasBeenExplored = false; //ok as is, as data class
+    [SerializeField] Color exploredColor; //TODO implement color changing blocks
+
+    //public data type is ok because it's a data class
+    //we declare these as public because we expect their values to be changed elsewhere
+    public bool blockHasBeenExplored = false;
+    public Waypointer previouslyAccessedWaypoint;
+
 
     Vector2Int gridPosition;
     const int gridSize = 10;
+
+
     // Start is called before the first frame update
     void Start()
     {

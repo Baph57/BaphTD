@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1001 &319177971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -330,6 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1001 &350760598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -435,6 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1001 &536034450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -734,6 +737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1 &688501279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,6 +1026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1001 &763566033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1127,6 +1132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1001 &903547173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1232,6 +1238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!4 &912993937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6326842991260713535, guid: eadc14e2e94374825867a18783e15ea3,
@@ -1326,8 +1333,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.38735947, y: 0.013595083, z: -0.005662256, w: -0.9218111}
-  m_LocalPosition: {x: 16.016695, y: 34.657978, z: -22.82824}
+  m_LocalRotation: {x: 0.6550937, y: -0.002807278, z: 0.00231415, w: 0.7555389}
+  m_LocalPosition: {x: 35.646954, y: 64.53278, z: 6.177204}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1438,6 +1445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1001 &1117614195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1543,6 +1551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1001 &1136567246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1824,6 +1833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1001 &1269229301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1929,6 +1939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1 &1292475320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1996,7 +2007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRunning: 1
   startWaypoint: {fileID: 536034452}
-  endWaypoint: {fileID: 49881961}
+  endWaypoint: {fileID: 1840848696}
 --- !u!1 &1321983146 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6326842991260713534, guid: eadc14e2e94374825867a18783e15ea3,
@@ -2022,6 +2033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1001 &1378486255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2127,6 +2139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1001 &1415480451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2232,6 +2245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1001 &1514055029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2337,6 +2351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1001 &1527100287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2636,6 +2651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockHasBeenExplored: 0
+  previouslyAccessedWaypoint: {fileID: 0}
 --- !u!1 &2115237439
 GameObject:
   m_ObjectHideFlags: 0
