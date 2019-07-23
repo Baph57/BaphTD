@@ -11,6 +11,10 @@ public class PathFinder : MonoBehaviour
     //creating a queue for our waypointers, another different data type!
     Queue<Waypointer> waypointQueue = new Queue<Waypointer>();
 
+    //List of waypoints
+    public List<Waypointer> path = new List<Waypointer>; //todo make private
+    
+
 
     //array of possible directions for navagation AI/pathfinding
     Vector2Int[] cardinalMovements =
