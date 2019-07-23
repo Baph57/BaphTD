@@ -83,7 +83,7 @@ public class PathFinder : MonoBehaviour
 
             //using bracket notation, we can reference these coordinates in our dictionary
             //then finally set the color to blue to signify we are evaluating it's position
-            //as a valid navigation path
+            //as a valid navigation path 
             try
             {
                 Waypointer neighbor = grid[explorationCoordinates];
