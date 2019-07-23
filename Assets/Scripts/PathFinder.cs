@@ -12,8 +12,13 @@ public class PathFinder : MonoBehaviour
     Queue<Waypointer> waypointQueue = new Queue<Waypointer>();
 
     //List of waypoints
-    public List<Waypointer> path = new List<Waypointer>(); //todo make private
-    
+    List<Waypointer> path = new List<Waypointer>(); //todo make private
+
+    //Getter
+    public List<Waypointer> GetWaypointers()
+    {
+        return path;
+    }
 
 
     //array of possible directions for navagation AI/pathfinding
