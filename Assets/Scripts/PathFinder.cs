@@ -12,7 +12,7 @@ public class PathFinder : MonoBehaviour
     Queue<Waypointer> waypointQueue = new Queue<Waypointer>();
 
     //List of waypoints
-    public List<Waypointer> path = new List<Waypointer>; //todo make private
+    public List<Waypointer> path = new List<Waypointer>(); //todo make private
     
 
 
@@ -42,6 +42,7 @@ public class PathFinder : MonoBehaviour
     {
         LoadBlocks();
         PathFindingController();
+        CreatePath();
     }
 
     private void PathFindingController()
@@ -92,7 +93,19 @@ public class PathFinder : MonoBehaviour
             }
         }
     }
+    private void CreatePath()
+    {
+        path.Add(endWaypoint);
 
+        Waypointer previousPoint = endWaypoint.previouslyAccessedWaypoint;
+        while( previousPoint != startWaypoint)
+        {
+            path.Add(previousPoint);
+            previousPoint = previousPoint.previouslyAccessedWaypoint;
+        }
+        path.Add(startWaypoint);
+        path.Reverse();
+    }
 
 
 
