@@ -8,12 +8,14 @@ public class EnemyController : MonoBehaviour
 
 
     [SerializeField] int amountOfHitsToMeetDeathCondition = 10;
-    [SerializeField] Transform parent;
+    //[SerializeField] GameObject parent;
     [SerializeField] GameObject DeathFX;
+    GarbageCollector garboCollector;
 
     void Start()
     {
 
+        garboCollector = FindObjectOfType<GarbageCollector>();
         PathFinder pathfinder = FindObjectOfType<PathFinder>();
         List<Waypointer> path = pathfinder.GetWaypointers();
         StartCoroutine(WaypointReader(path));
@@ -38,7 +40,8 @@ public class EnemyController : MonoBehaviour
         {
             print("conditional met for NPC death");
             GameObject deathExplosion = Instantiate(DeathFX, transform.position, Quaternion.identity);
-            deathExplosion.transform.parent = parent;
+            //var garboCollector = FindObjectOfType(GarbageCollector);
+            deathExplosion.transform.parent = garboCollector.transform;
             print("Enemy Death Condition Met: " + gameObject.name);
             Destroy(gameObject);
         }

@@ -124,3 +124,5 @@ MonoBehaviour:
   amountOfHitsToMeetDeathCondition: 5
   parent: {fileID: 0}
   DeathFX: {fileID: 2687133680165939286, guid: 9d5e5e2fde78f42ea97d65f0c95b259e, type: 3}
+  garboCollector: {fileID: 6613867617631871606, guid: 1fdcb0c8c2d674f368abac34c510c077,
+    type: 3}

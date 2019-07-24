@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
 
     [SerializeField] int numberOfEnemiesToSpawn = 10;
+    [Range(1f, 60f)]
     [SerializeField] float secondsBetweenSpawns = 2f;
     [SerializeField] GameObject enemyNPC;
     List<GameObject> listOfEnemies;
@@ -16,11 +17,13 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < numberOfEnemiesToSpawn; i++)
-        {
-            listOfEnemies.Add(enemyNPC);
-        }
-        StartCoroutine(EnemySpawningExecutor(listOfEnemies));
+        //for(int i = 0; i < numberOfEnemiesToSpawn; i++)
+        //{
+        //    listOfEnemies.Add(enemyNPC);
+        //}
+        //StartCoroutine(EnemySpawningExecutor(listOfEnemies));
+        StartCoroutine(SimpleEnemySpawner());
+
 
     }
 
@@ -30,7 +33,14 @@ public class EnemySpawner : MonoBehaviour
         
     }
 
-
+    IEnumerator SimpleEnemySpawner()
+    {
+        while(true)
+        {
+            Instantiate(enemyNPC, transform);
+            yield return new WaitForSeconds(secondsBetweenSpawns);
+        }
+    }
 
     //IEnumerator is essentially a Co-Routine
     IEnumerator EnemySpawningExecutor(List<GameObject> enemyNPCs) //co-routine
@@ -38,11 +48,11 @@ public class EnemySpawner : MonoBehaviour
         print("Spawning!");
         foreach (GameObject enemy in enemyNPCs)
         {
-            enemy.
-            //transform.position = waypoint.transform.position;
+            //Instantiate(enemy, transform.position, Quaternion.identity);
+            Instantiate(enemy, transform);
             //yield says to wait for the next loop iteration until the yield
             //resolves essentially. WaitForSeconds is available thru Unity.API
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(secondsBetweenSpawns);
         }
         print("Ending spawning!");
     }

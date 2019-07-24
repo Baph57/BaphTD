@@ -1,19 +1,62 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerController : MonoBehaviour
 {
+    
+    //instance variables
+    //parameters of each tower
     [SerializeField] Transform objectToPan;
-    [SerializeField] Transform targetEnemy;
     [SerializeField] float attackRange = 40f;
     [SerializeField] ParticleSystem ballisticsParticles;
 
+	//state of each tower
+	Transform targetEnemy;
 
-    // Update is called once per frame
-    void Update()
+
+
+
+
+	// Update is called once per frame
+	void Update()
     {
+        AcquireTargetEnemy();
         BallisticsController();
+    }
+
+    private void AcquireTargetEnemy()
+    {
+        EnemyController[] sceneEnemies = FindObjectsOfType<EnemyController>();
+        if(sceneEnemies.Length == 0) { return; }
+
+        Transform closestEnemy = sceneEnemies[0].transform;
+
+        foreach (EnemyController enemy in sceneEnemies)
+        {
+            closestEnemy = GetClosestEnemy(closestEnemy, enemy.transform);
+        }
+        targetEnemy = closestEnemy;
+    }
+
+    private Transform GetClosestEnemy(Transform farthestAlongEnemy, Transform iteratedEnemyFromScene)
+    {
+        float distanceFromCurrentTarget =
+            Vector3.Distance(gameObject.transform.position, farthestAlongEnemy.position);
+        float distanceFromProposedTarget =
+            Vector3.Distance(gameObject.transform.position, iteratedEnemyFromScene.position);
+        print(distanceFromCurrentTarget + " \\ " + distanceFromProposedTarget);
+
+        if(distanceFromCurrentTarget > distanceFromProposedTarget)
+        {
+            return iteratedEnemyFromScene;
+        }
+        else
+        {
+            return farthestAlongEnemy;
+        }
+
     }
 
     private void BallisticsController()
