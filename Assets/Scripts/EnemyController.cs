@@ -5,15 +5,43 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
 
-    //[SerializeField] List<Waypointer> EnemyPath;
-    // Start is called before the first frame update
+
+
+    [SerializeField] int amountOfHitsToMeetDeathCondition = 5;
+    [SerializeField] Transform parent;
+    [SerializeField] GameObject DeathFX;
+
     void Start()
     {
 
         PathFinder pathfinder = FindObjectOfType<PathFinder>();
         List<Waypointer> path = pathfinder.GetWaypointers();
         StartCoroutine(WaypointReader(path));
+        AddBoxColliderOnRuntime();
 
+    }
+
+    private void AddBoxColliderOnRuntime()
+    {
+        //gameObject.
+        //GameObject childFrame = transform.Find("Enemy_A");
+        //childFrame.AddComponent<BoxCollider>().isTrigger = false;
+
+        print("collider added");
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        --amountOfHitsToMeetDeathCondition;
+        print("particle collision detected");
+        if(amountOfHitsToMeetDeathCondition <= 0)
+        {
+            print("conditional met for NPC death");
+            GameObject deathExplosion = Instantiate(DeathFX, transform.position, Quaternion.identity);
+            deathExplosion.transform.parent = parent;
+            print("Enemy Death Condition Met: " + gameObject.name);
+            Destroy(gameObject);
+        }
     }
 
     //IEnumerator is essentially a Co-Routine
