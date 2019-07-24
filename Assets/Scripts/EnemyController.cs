@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
 
 
 
-    [SerializeField] int amountOfHitsToMeetDeathCondition = 5;
+    [SerializeField] int amountOfHitsToMeetDeathCondition = 10;
     [SerializeField] Transform parent;
     [SerializeField] GameObject DeathFX;
 
@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour
             //yield says to wait for the next loop iteration until the yield
             //resolves essentially. WaitForSeconds is available thru Unity.API
             //print("Patrol Pos: " + waypoint.name);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
         }
         print("Ending Patrol SIR!");
     }

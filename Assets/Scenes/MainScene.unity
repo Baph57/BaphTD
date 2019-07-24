@@ -3107,14 +3107,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115237439}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c789415ef0f9e4ef9b6c09c142274954, type: 3}
+  m_Script: {fileID: 11500000, guid: 9183543efa027456889ca50c57138a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfHitsToMeetDeathCondition: 5
-  parent: {fileID: 1728836448}
-  DeathFX: {fileID: 2687133680165939286, guid: 9d5e5e2fde78f42ea97d65f0c95b259e, type: 3}
 --- !u!1001 &4056040102179060065
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,13 +14,22 @@ public class PathFinder : MonoBehaviour
     //List of waypoints
     List<Waypointer> path = new List<Waypointer>(); //todo make private
 
+    //bool check for getter
+    bool getterHasBeenRepeated = false;
+
     //Getter
     public List<Waypointer> GetWaypointers()
     {
-        LoadBlocks();
-        PathFindingController();
-        CreatePath();
+        if(getterHasBeenRepeated == false)
+        {
+            //creating the path/pathfinding for enemy AI
+            LoadBlocks();
+            PathFindingController();
+            CreatePath();
+            getterHasBeenRepeated = true;
+        }
         return path;
+
     }
 
 
