@@ -35,14 +35,12 @@ public class EnemyController : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         --amountOfHitsToMeetDeathCondition;
-        print("particle collision detected");
         if(amountOfHitsToMeetDeathCondition <= 0)
         {
-            print("conditional met for NPC death");
+
             GameObject deathExplosion = Instantiate(DeathFX, transform.position, Quaternion.identity);
             //var garboCollector = FindObjectOfType(GarbageCollector);
             deathExplosion.transform.parent = garboCollector.transform;
-            print("Enemy Death Condition Met: " + gameObject.name);
             Destroy(gameObject);
         }
     }

@@ -5,34 +5,6 @@ using UnityEngine;
 
 public class PathFinder : MonoBehaviour
 {
-    //Dictionary DataStructure, similar to objects in js
-    Dictionary<Vector2Int, Waypointer> grid = new Dictionary<Vector2Int, Waypointer>();
-
-    //creating a queue for our waypointers, another different data type!
-    Queue<Waypointer> waypointQueue = new Queue<Waypointer>();
-
-    //List of waypoints
-    List<Waypointer> path = new List<Waypointer>(); //todo make private
-
-    //bool check for getter
-    bool getterHasBeenRepeated = false;
-
-    //Getter
-    public List<Waypointer> GetWaypointers()
-    {
-        if(getterHasBeenRepeated == false)
-        {
-            //creating the path/pathfinding for enemy AI
-            LoadBlocks();
-            PathFindingController();
-            CreatePath();
-            getterHasBeenRepeated = true;
-        }
-        return path;
-
-    }
-
-
     //array of possible directions for navagation AI/pathfinding
     Vector2Int[] cardinalMovements =
     {
@@ -51,19 +23,57 @@ public class PathFinder : MonoBehaviour
     //The fact that we can serialize these, assign them in the editor
     //then come back and write code referencing those exact objects, is insane.
     [SerializeField] Waypointer startWaypoint, endWaypoint;
-    
 
-    
+    //Dictionary DataStructure, similar to objects in js
+    Dictionary<Vector2Int, Waypointer> grid = new Dictionary<Vector2Int, Waypointer>();
 
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    LoadBlocks();
-    //    PathFindingController();
-    //    CreatePath();
-    //}
+    //creating a queue for our waypointers, another different data type!
+    Queue<Waypointer> waypointQueue = new Queue<Waypointer>();
 
-    private void PathFindingController()
+    //List of waypoints
+    List<Waypointer> path = new List<Waypointer>(); //todo make private
+
+    //bool check for getter
+    bool getterHasBeenRepeated = false;
+
+    //Getter and state setter for Waypoints
+    public List<Waypointer> PathfindingController()
+    {
+        if(getterHasBeenRepeated == false)
+        {
+            //creating the path/pathfinding for enemy AI
+            LoadBlocks();
+            WaypointQueue();
+            CreatePath();
+            getterHasBeenRepeated = true;
+        }
+        return path;
+
+    }
+
+    private void LoadBlocks()
+    {
+        var waypoints = FindObjectsOfType<Waypointer>();
+        foreach(Waypointer waypoint in waypoints)
+        {
+            var gridPosition = waypoint.GetGridPosition();
+            if (grid.ContainsKey(gridPosition))
+            {
+                Debug.LogWarning("Overlapped Block " + waypoint);
+            }
+            else if (waypoint == startWaypoint || waypoint == endWaypoint)
+            {
+                grid.Add(gridPosition, waypoint);
+            }
+            else
+            {
+                grid.Add(gridPosition, waypoint);
+            }
+        }
+        print(grid.Count + " Grid Count");
+    }
+
+    private void WaypointQueue()
     {
         waypointQueue.Enqueue(startWaypoint);
 
@@ -73,6 +83,25 @@ public class PathFinder : MonoBehaviour
             originSearch.blockHasBeenExplored = true;
             CalculatePossibleDirections();
         }
+    }
+
+    private void CreatePath()
+    {
+        //setting our path so that towers can't be placed
+        //to block our enemies, same in the loop below
+        endWaypoint.isPlayerInteractive = false;
+        startWaypoint.isPlayerInteractive = false;
+        path.Add(endWaypoint);
+
+        Waypointer previousPoint = endWaypoint.previouslyAccessedWaypoint;
+        while( previousPoint != startWaypoint)
+        {
+            path.Add(previousPoint);
+            previousPoint.isPlayerInteractive = false;
+            previousPoint = previousPoint.previouslyAccessedWaypoint;
+        }
+        path.Add(startWaypoint);
+        path.Reverse();
     }
 
     private void CalculatePossibleDirections()
@@ -99,10 +128,9 @@ public class PathFinder : MonoBehaviour
                 Waypointer neighbor = grid[explorationCoordinates];
                 if (neighbor.blockHasBeenExplored || waypointQueue.Contains(neighbor)){ /**/ }
                 else
-                { 
-                //neighbor.SetTopColor(Color.blue);//todo move later
-                waypointQueue.Enqueue(neighbor);
-                neighbor.previouslyAccessedWaypoint = originSearch;
+                {
+                    waypointQueue.Enqueue(neighbor);
+                    neighbor.previouslyAccessedWaypoint = originSearch;
                 }
             }
             catch
@@ -111,51 +139,8 @@ public class PathFinder : MonoBehaviour
             }
         }
     }
-    private void CreatePath()
-    {
-        //setting our path so that towers can't be placed
-        //to block our enemies, same in the loop below
-        endWaypoint.isPlayerInteractive = false;
-        startWaypoint.isPlayerInteractive = false;
-
-        path.Add(endWaypoint);
-
-        Waypointer previousPoint = endWaypoint.previouslyAccessedWaypoint;
-        while( previousPoint != startWaypoint)
-        {
-            path.Add(previousPoint);
-            previousPoint.isPlayerInteractive = false;
-            previousPoint = previousPoint.previouslyAccessedWaypoint;
-        }
-        path.Add(startWaypoint);
-        path.Reverse();
-    }
 
 
 
-    private void LoadBlocks()
-    {
-        var waypoints = FindObjectsOfType<Waypointer>();
-        foreach(Waypointer waypoint in waypoints)
-        {
-            var gridPosition = waypoint.GetGridPosition();
-            if (grid.ContainsKey(gridPosition))
-            {
-                Debug.LogWarning("Overlapped Block " + waypoint);
-            }
-            else if (waypoint == startWaypoint || waypoint == endWaypoint)
-            {
-                grid.Add(gridPosition, waypoint);
-                startWaypoint.SetTopColor(Color.magenta);
-                endWaypoint.SetTopColor(Color.cyan);
-            }
-            else
-            {
-                grid.Add(gridPosition, waypoint);
-                waypoint.SetTopColor(Color.black);
-            }
-        }
-        print(grid.Count + " Grid Count");
-    }
 
 }

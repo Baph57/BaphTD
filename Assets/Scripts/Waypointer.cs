@@ -63,13 +63,20 @@ public class Waypointer : MonoBehaviour
     {
         if (CrossPlatformInputManager.GetButton("Fire1"))
         {
-            print(gameObject.name + " clicked");
+            if (isPlayerInteractive)
+            {
+                print("gottem");
+            }
+            else
+            {
+                print("didnt gettem");
+            }
         }
         
     }
     void OnMouseExit()
     {
         //The mouse is no longer hovering over the GameObject so output this message each frame
-        Debug.Log("Mouse is no longer over " + gameObject.name);
+        //Debug.Log("Mouse is no longer over " + gameObject.name);
     }
 }
