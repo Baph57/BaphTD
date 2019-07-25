@@ -11,6 +11,7 @@ public class Waypointer : MonoBehaviour
     //public data type is ok because it's a data class
     //we declare these as public because we expect their values to be changed elsewhere
     public bool blockHasBeenExplored = false;
+    public bool isPlayerInteractive = true;
     public Waypointer previouslyAccessedWaypoint;
 
 

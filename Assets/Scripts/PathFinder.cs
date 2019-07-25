@@ -51,6 +51,7 @@ public class PathFinder : MonoBehaviour
     //The fact that we can serialize these, assign them in the editor
     //then come back and write code referencing those exact objects, is insane.
     [SerializeField] Waypointer startWaypoint, endWaypoint;
+    
 
     
 
@@ -112,12 +113,18 @@ public class PathFinder : MonoBehaviour
     }
     private void CreatePath()
     {
+        //setting our path so that towers can't be placed
+        //to block our enemies, same in the loop below
+        endWaypoint.isPlayerInteractive = false;
+        startWaypoint.isPlayerInteractive = false;
+
         path.Add(endWaypoint);
 
         Waypointer previousPoint = endWaypoint.previouslyAccessedWaypoint;
         while( previousPoint != startWaypoint)
         {
             path.Add(previousPoint);
+            previousPoint.isPlayerInteractive = false;
             previousPoint = previousPoint.previouslyAccessedWaypoint;
         }
         path.Add(startWaypoint);
