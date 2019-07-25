@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Waypointer : MonoBehaviour
 {
@@ -59,7 +60,11 @@ public class Waypointer : MonoBehaviour
 
      void OnMouseOver()
     {
-        Debug.Log("Mouse is over " + gameObject.name);
+        if (CrossPlatformInputManager.GetButton("Fire1"))
+        {
+            print(gameObject.name + " clicked");
+        }
+        
     }
     void OnMouseExit()
     {
