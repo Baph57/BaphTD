@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-
-
-
     [SerializeField] int amountOfHitsToMeetDeathCondition = 10;
     //[SerializeField] GameObject parent;
     [SerializeField] GameObject DeathFX;
@@ -17,19 +14,8 @@ public class EnemyController : MonoBehaviour
 
         garboCollector = FindObjectOfType<GarbageCollector>();
         PathFinder pathfinder = FindObjectOfType<PathFinder>();
-        List<Waypointer> path = pathfinder.GetWaypointers();
+        List<Waypointer> path = pathfinder.PathfindingController();
         StartCoroutine(WaypointReader(path));
-        AddBoxColliderOnRuntime();
-
-    }
-
-    private void AddBoxColliderOnRuntime()
-    {
-        //gameObject.
-        //GameObject childFrame = transform.Find("Enemy_A");
-        //childFrame.AddComponent<BoxCollider>().isTrigger = false;
-
-        print("collider added");
     }
 
     private void OnParticleCollision(GameObject other)
@@ -53,9 +39,6 @@ public class EnemyController : MonoBehaviour
         foreach (Waypointer waypoint in waypoints)
         {
             transform.position = waypoint.transform.position;
-            //yield says to wait for the next loop iteration until the yield
-            //resolves essentially. WaitForSeconds is available thru Unity.API
-            //print("Patrol Pos: " + waypoint.name);
             yield return new WaitForSeconds(2f);
         }
         print("Ending Patrol SIR!");

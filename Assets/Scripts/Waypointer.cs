@@ -6,7 +6,6 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Waypointer : MonoBehaviour
 {
 
-    [SerializeField] Color exploredColor; //TODO implement color changing blocks
 
     //public data type is ok because it's a data class
     //we declare these as public because we expect their values to be changed elsewhere
@@ -76,7 +75,6 @@ public class Waypointer : MonoBehaviour
     }
     void OnMouseExit()
     {
-        //The mouse is no longer hovering over the GameObject so output this message each frame
-        //Debug.Log("Mouse is no longer over " + gameObject.name);
+        //unsure if I want to do anything with this, but keeping for reference
     }
 }

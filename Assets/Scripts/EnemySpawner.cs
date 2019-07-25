@@ -11,28 +11,13 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject enemyNPC;
     List<GameObject> listOfEnemies;
 
-    //StartCoroutine(WaypointReader(path));
-    //List<Waypointer> path = pathfinder.GetWaypointers();
-
-    // Start is called before the first frame update
     void Start()
     {
-        //for(int i = 0; i < numberOfEnemiesToSpawn; i++)
-        //{
-        //    listOfEnemies.Add(enemyNPC);
-        //}
-        //StartCoroutine(EnemySpawningExecutor(listOfEnemies));
+        //TODO: implement a limited amount of enemies
         StartCoroutine(SimpleEnemySpawner());
 
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator SimpleEnemySpawner()
     {
         while(true)
@@ -42,8 +27,8 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    //IEnumerator is essentially a Co-Routine
-    IEnumerator EnemySpawningExecutor(List<GameObject> enemyNPCs) //co-routine
+    //TODO: implement limited amounts of enemies spawning
+    IEnumerator EnemySpawningExecutor(List<GameObject> enemyNPCs) 
     {
         print("Spawning!");
         foreach (GameObject enemy in enemyNPCs)

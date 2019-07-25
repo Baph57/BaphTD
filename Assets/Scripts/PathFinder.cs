@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//TODO: Fix flow of this page, set initializing towards top and functionality towards the bottom
 public class PathFinder : MonoBehaviour
 {
     //array of possible directions for navagation AI/pathfinding
@@ -17,12 +17,7 @@ public class PathFinder : MonoBehaviour
     //state variables
     [SerializeField]bool isRunning = true; //todo make private
     Waypointer originSearch; //curent search center for state
-
-
-    //works amazingly well, seems C# and Unity work very closely together
-    //The fact that we can serialize these, assign them in the editor
-    //then come back and write code referencing those exact objects, is insane.
-    [SerializeField] Waypointer startWaypoint, endWaypoint;
+    [SerializeField] Waypointer startWaypoint, endWaypoint; //start & end
 
     //Dictionary DataStructure, similar to objects in js
     Dictionary<Vector2Int, Waypointer> grid = new Dictionary<Vector2Int, Waypointer>();
@@ -36,6 +31,7 @@ public class PathFinder : MonoBehaviour
     //bool check for getter
     bool getterHasBeenRepeated = false;
 
+
     //Getter and state setter for Waypoints
     public List<Waypointer> PathfindingController()
     {
@@ -43,7 +39,7 @@ public class PathFinder : MonoBehaviour
         {
             //creating the path/pathfinding for enemy AI
             LoadBlocks();
-            WaypointQueue();
+            ProcessPossibleMovement();
             CreatePath();
             getterHasBeenRepeated = true;
         }
@@ -73,7 +69,7 @@ public class PathFinder : MonoBehaviour
         print(grid.Count + " Grid Count");
     }
 
-    private void WaypointQueue()
+    private void ProcessPossibleMovement()
     {
         waypointQueue.Enqueue(startWaypoint);
 
@@ -81,7 +77,7 @@ public class PathFinder : MonoBehaviour
         {
             originSearch = waypointQueue.Dequeue();
             originSearch.blockHasBeenExplored = true;
-            CalculatePossibleDirections();
+            PathValidator();
         }
     }
 
@@ -104,7 +100,7 @@ public class PathFinder : MonoBehaviour
         path.Reverse();
     }
 
-    private void CalculatePossibleDirections()
+    private void PathValidator()
     {
         if (!isRunning) { return; }
         if (originSearch == endWaypoint)
@@ -118,11 +114,8 @@ public class PathFinder : MonoBehaviour
             //the actual coordinates instead of the integer values that represent the
             //arithmetic responsible (0,1) -> (3,4)
             Vector2Int explorationCoordinates = originSearch.GetGridPosition() + possibleMove;
-            //print("exploring " + explorationCoordinates);
 
             //using bracket notation, we can reference these coordinates in our dictionary
-            //then finally set the color to blue to signify we are evaluating it's position
-            //as a valid navigation path 
             try
             {
                 Waypointer neighbor = grid[explorationCoordinates];
@@ -139,8 +132,4 @@ public class PathFinder : MonoBehaviour
             }
         }
     }
-
-
-
-
 }

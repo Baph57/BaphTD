@@ -10,19 +10,12 @@ using UnityEngine;
 
 public class CubeEditor : MonoBehaviour
 {
-    //refactoring to have Waypointer not rely on CubeEditor
-    // [Range(1f, 20f)][SerializeField] float gridSize = 10f;
-
-
-
     //instance variables
     Vector3 snapPosition;
     Waypointer waypointer;
 
     //member variables
     int gridSize;
-
-
 
     private void Awake()
     {
