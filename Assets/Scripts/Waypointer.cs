@@ -55,5 +55,15 @@ public class Waypointer : MonoBehaviour
         MeshRenderer topBlockMeshRenderer = transform.Find("Y+Plane").GetComponent<MeshRenderer>();
         //print(transform.Find("Y+Plane").GetComponent<MeshRenderer>());
         topBlockMeshRenderer.material.color = color;
-    }   
+    }
+
+     void OnMouseOver()
+    {
+        Debug.Log("Mouse is over " + gameObject.name);
+    }
+    void OnMouseExit()
+    {
+        //The mouse is no longer hovering over the GameObject so output this message each frame
+        Debug.Log("Mouse is no longer over " + gameObject.name);
+    }
 }

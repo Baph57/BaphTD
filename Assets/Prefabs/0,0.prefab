@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 6326842991260713535}
   - component: {fileID: 2946619672087599701}
   - component: {fileID: -7967004821250940702}
+  - component: {fileID: 6410171255415724995}
   m_Layer: 0
   m_Name: 0,0
   m_TagString: Untagged
@@ -154,6 +155,19 @@ MonoBehaviour:
   exploredColor: {r: 0, g: 0, b: 0, a: 0}
   blockHasBeenExplored: 0
   previouslyAccessedWaypoint: {fileID: 0}
+--- !u!65 &6410171255415724995
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6326842991260713534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: -4, z: 0}
 --- !u!1 &8415489502034309529
 GameObject:
   m_ObjectHideFlags: 0

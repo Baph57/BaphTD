@@ -148,7 +148,7 @@ public class PathFinder : MonoBehaviour
                 waypoint.SetTopColor(Color.black);
             }
         }
-        print(grid.Count);
+        print(grid.Count + " Grid Count");
     }
 
 }
