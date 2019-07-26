@@ -152,11 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee795b58130d4ef6a95635fff18421d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTower: {fileID: 4056040102917601410, guid: 67639d50a2168414a9e331b0694a73d8,
-    type: 3}
   blockHasBeenExplored: 0
   isPlayerInteractive: 1
   previouslyAccessedWaypoint: {fileID: 0}
+  placeableTower: {fileID: 4056040102917601410, guid: 67639d50a2168414a9e331b0694a73d8,
+    type: 3}
 --- !u!65 &6410171255415724995
 BoxCollider:
   m_ObjectHideFlags: 0

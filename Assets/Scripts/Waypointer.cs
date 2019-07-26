@@ -12,6 +12,9 @@ public class Waypointer : MonoBehaviour
     public bool blockHasBeenExplored = false;
     public bool isPlayerInteractive = true;
     public Waypointer previouslyAccessedWaypoint;
+    //SerializeField may be better for tower to prevent
+    //other classes from accessing this GameObject
+    public GameObject placeableTower;
 
 
     Vector2Int gridPosition;
@@ -64,7 +67,12 @@ public class Waypointer : MonoBehaviour
         {
             if (isPlayerInteractive)
             {
-                print("gottem");
+
+                //Instantiate(placeableTower, gameObject.transform);
+                var newTowerPosition = new Vector3(gameObject.transform.position.x, byte.MinValue, gameObject.transform.position.z);
+                Instantiate(placeableTower, newTowerPosition, Quaternion.identity);
+                isPlayerInteractive = false;
+                print("Transform: " + gameObject.transform);
             }
             else
             {
