@@ -16,9 +16,6 @@ public class TowerController : MonoBehaviour
 	Transform targetEnemy;
 
 
-
-
-
 	// Update is called once per frame
 	void Update()
     {
