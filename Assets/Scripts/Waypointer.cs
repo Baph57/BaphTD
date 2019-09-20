@@ -16,6 +16,9 @@ public class Waypointer : MonoBehaviour
     //other classes from accessing this GameObject
     public GameObject placeableTower;
 
+    [SerializeField]
+    public GameObject listOfTowers;
+
 
     Vector2Int gridPosition;
     const int gridSize = 10;
@@ -70,7 +73,12 @@ public class Waypointer : MonoBehaviour
 
                 //Instantiate(placeableTower, gameObject.transform);
                 var newTowerPosition = new Vector3(gameObject.transform.position.x, byte.MinValue, gameObject.transform.position.z);
-                Instantiate(placeableTower, newTowerPosition, Quaternion.identity);
+                Instantiate(
+                    placeableTower, 
+                    newTowerPosition, 
+                    Quaternion.identity
+                    ).transform.parent = listOfTowers.transform;
+
                 isPlayerInteractive = false;
                 print("Transform: " + gameObject.transform);
             }
