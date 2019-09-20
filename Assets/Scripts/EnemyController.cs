@@ -34,7 +34,7 @@ public class EnemyController : MonoBehaviour
     //IEnumerator is essentially a Co-Routine
     IEnumerator WaypointReader(List<Waypointer> waypoints) //co-routine
     {
-        print("Starting Patrol SIR!");
+        print("Starting Patrol With VSC!!");
         //reference to every block in the enemy path 
         foreach (Waypointer waypoint in waypoints)
         {

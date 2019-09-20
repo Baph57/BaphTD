@@ -16,7 +16,6 @@ public class EnemySpawner : MonoBehaviour
         //TODO: implement a limited amount of enemies
         StartCoroutine(SimpleEnemySpawner());
 
-
     }
     IEnumerator SimpleEnemySpawner()
     {
