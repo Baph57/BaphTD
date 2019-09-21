@@ -17,7 +17,7 @@ public class Waypointer : MonoBehaviour
     public GameObject placeableTower;
 
     [SerializeField]
-    public GameObject listOfTowers;
+    public TowerRingBuffer towerRingBuffer;
 
 
     Vector2Int gridPosition;
@@ -70,14 +70,18 @@ public class Waypointer : MonoBehaviour
         {
             if (isPlayerInteractive)
             {
+                Vector3 newTowerPosition = new Vector3(
+                    gameObject.transform.position.x, 
+                    byte.MinValue, 
+                    gameObject.transform.position.z);
 
-                //Instantiate(placeableTower, gameObject.transform);
-                var newTowerPosition = new Vector3(gameObject.transform.position.x, byte.MinValue, gameObject.transform.position.z);
-                Instantiate(
-                    placeableTower, 
-                    newTowerPosition, 
-                    Quaternion.identity
-                    ).transform.parent = listOfTowers.transform;
+                    towerRingBuffer.PlaceTower(this);
+
+                // Instantiate(
+                //     placeableTower, 
+                //     newTowerPosition, 
+                //     Quaternion.identity
+                //     ).transform.parent = towerRingBuffer.transform;
 
                 isPlayerInteractive = false;
                 print("Transform: " + gameObject.transform);

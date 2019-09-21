@@ -67,6 +67,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -157,6 +158,8 @@ MonoBehaviour:
   previouslyAccessedWaypoint: {fileID: 0}
   placeableTower: {fileID: 4056040102917601410, guid: 67639d50a2168414a9e331b0694a73d8,
     type: 3}
+  towerRingBuffer: {fileID: 7572597187316337449, guid: 53c92afef30c848009313ec18d8bb857,
+    type: 3}
 --- !u!65 &6410171255415724995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -227,6 +230,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
