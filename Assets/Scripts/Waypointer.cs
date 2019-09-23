@@ -14,7 +14,7 @@ public class Waypointer : MonoBehaviour
     public Waypointer previouslyAccessedWaypoint;
     //SerializeField may be better for tower to prevent
     //other classes from accessing this GameObject
-    public GameObject placeableTower;
+    // public TowerController placeableTower;
 
     [SerializeField]
     public TowerRingBuffer towerRingBuffer;

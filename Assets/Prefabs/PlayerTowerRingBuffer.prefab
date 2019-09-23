@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46726578cf854103a221c3b43074cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeableTower: {fileID: 4056040102917601410, guid: 67639d50a2168414a9e331b0694a73d8,
+  placeableTower: {fileID: 4056040102917601412, guid: 67639d50a2168414a9e331b0694a73d8,
     type: 3}
   placeableTowerLimit: 4
+  numberOfTowersPlaced: 0

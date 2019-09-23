@@ -156,7 +156,7 @@ MonoBehaviour:
   blockHasBeenExplored: 0
   isPlayerInteractive: 1
   previouslyAccessedWaypoint: {fileID: 0}
-  placeableTower: {fileID: 4056040102917601410, guid: 67639d50a2168414a9e331b0694a73d8,
+  placeableTower: {fileID: 4056040102917601412, guid: 67639d50a2168414a9e331b0694a73d8,
     type: 3}
   towerRingBuffer: {fileID: 7572597187316337449, guid: 53c92afef30c848009313ec18d8bb857,
     type: 3}

@@ -5,32 +5,30 @@ using UnityEngine;
 public class TowerRingBuffer : MonoBehaviour
 {
     [SerializeField]
-    public GameObject placeableTower;
+    public TowerController placeableTower;
 
     [SerializeField]
     public int placeableTowerLimit = 4;
 
-    private int numberOfTowersPlaced = 0;
-
-    // private Queue<GameObject> circularBuffer;
 
 
 
     public void PlaceTower(Waypointer spaceToPlace)
     {
-        if(numberOfTowersPlaced == placeableTowerLimit)
+        var towerObjects = FindObjectsOfType<TowerController>();
+        var towerPlacedCount = towerObjects.Length;
+
+        if(towerPlacedCount >= placeableTowerLimit)
         {
             print("henlo darkness my old fren");
         }
         else
         {
-            numberOfTowersPlaced++;
-            var towerToPlace = Instantiate(
+            Instantiate(
             placeableTower, 
             spaceToPlace.transform.position, 
             Quaternion.identity
             );
-            // circularBuffer.Enqueue(towerToPlace);
         }
     }
 }
