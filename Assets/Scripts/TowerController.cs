@@ -43,7 +43,6 @@ public class TowerController : MonoBehaviour
             Vector3.Distance(gameObject.transform.position, farthestAlongEnemy.position);
         float distanceFromProposedTarget =
             Vector3.Distance(gameObject.transform.position, iteratedEnemyFromScene.position);
-        //print(distanceFromCurrentTarget + " \\ " + distanceFromProposedTarget);
 
         if(distanceFromCurrentTarget > distanceFromProposedTarget)
         {
@@ -79,7 +78,6 @@ public class TowerController : MonoBehaviour
             //out of range
             else if (distanceFromEnemyTarget > attackRange)
             {
-                //print("enemy out of range");
                 //ballisticsFX turned off
                 emissionReference.enabled = false;
             }

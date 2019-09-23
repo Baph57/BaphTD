@@ -24,13 +24,6 @@ public class Waypointer : MonoBehaviour
     const int gridSize = 10;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-
     public int GetGridSize()
     {
         return gridSize;
@@ -40,9 +33,7 @@ public class Waypointer : MonoBehaviour
     public Vector2Int GetGridPosition()
     {
         gridPosition.x = Mathf.RoundToInt(transform.position.x / gridSize);
-        //this isn't the real y plane
         gridPosition.y = Mathf.RoundToInt(transform.position.z / gridSize);
-        //print("GridPos x:" + gridPosition.x + " ||  y:" + gridPosition.y);
         return new Vector2Int(gridPosition.x, gridPosition.y);
     }
 
@@ -60,11 +51,10 @@ public class Waypointer : MonoBehaviour
     public void SetTopColor(Color color)
     {
         MeshRenderer topBlockMeshRenderer = transform.Find("Y+Plane").GetComponent<MeshRenderer>();
-        //print(transform.Find("Y+Plane").GetComponent<MeshRenderer>());
         topBlockMeshRenderer.material.color = color;
     }
 
-     void OnMouseOver()
+    void OnMouseOver()
     {
         if (CrossPlatformInputManager.GetButton("Fire1"))
         {
@@ -75,13 +65,8 @@ public class Waypointer : MonoBehaviour
                     byte.MinValue, 
                     gameObject.transform.position.z);
 
+                    //implementation of ring buffer for max tower placement
                     towerRingBuffer.PlaceTower(this);
-
-                // Instantiate(
-                //     placeableTower, 
-                //     newTowerPosition, 
-                //     Quaternion.identity
-                //     ).transform.parent = towerRingBuffer.transform;
 
                 isPlayerInteractive = false;
                 print("Transform: " + gameObject.transform);
