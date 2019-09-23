@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeableTower: {fileID: 4056040102917601410, guid: 67639d50a2168414a9e331b0694a73d8,
     type: 3}
-  placeableTowerLimit: 0
+  placeableTowerLimit: 4

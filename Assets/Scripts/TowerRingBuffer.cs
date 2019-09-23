@@ -8,14 +8,29 @@ public class TowerRingBuffer : MonoBehaviour
     public GameObject placeableTower;
 
     [SerializeField]
-    public int placeableTowerLimit;
+    public int placeableTowerLimit = 4;
+
+    private int numberOfTowersPlaced = 0;
+
+    private Queue<GameObject> circularBuffer;
+
+
 
     public void PlaceTower(Waypointer spaceToPlace)
     {
-        Instantiate(
-                    placeableTower, 
-                    spaceToPlace.transform.position, 
-                    Quaternion.identity
-                    );
+        if(numberOfTowersPlaced == placeableTowerLimit)
+        {
+            print("henlo darkness my old fren");
+        }
+        else
+        {
+            numberOfTowersPlaced++;
+            var towerToPlace = Instantiate(
+            placeableTower, 
+            spaceToPlace.transform.position, 
+            Quaternion.identity
+            );
+            circularBuffer.Enqueue(towerToPlace);
+        }
     }
 }

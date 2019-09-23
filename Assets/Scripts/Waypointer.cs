@@ -60,20 +60,14 @@ public class Waypointer : MonoBehaviour
         {
             if (isPlayerInteractive)
             {
-                Vector3 newTowerPosition = new Vector3(
-                    gameObject.transform.position.x, 
-                    byte.MinValue, 
-                    gameObject.transform.position.z);
-
-                    //implementation of ring buffer for max tower placement
-                    towerRingBuffer.PlaceTower(this);
-
+                //implementation of ring buffer for max tower placement
+                towerRingBuffer.PlaceTower(this);
                 isPlayerInteractive = false;
                 print("Transform: " + gameObject.transform);
             }
             else
             {
-                print("didnt gettem");
+                print("Invalid Placement for Turret");
             }
         }
         
