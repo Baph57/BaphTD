@@ -12,7 +12,7 @@ public class TowerRingBuffer : MonoBehaviour
 
     private int numberOfTowersPlaced = 0;
 
-    private Queue<GameObject> circularBuffer;
+    // private Queue<GameObject> circularBuffer;
 
 
 
@@ -30,7 +30,7 @@ public class TowerRingBuffer : MonoBehaviour
             spaceToPlace.transform.position, 
             Quaternion.identity
             );
-            circularBuffer.Enqueue(towerToPlace);
+            // circularBuffer.Enqueue(towerToPlace);
         }
     }
 }
