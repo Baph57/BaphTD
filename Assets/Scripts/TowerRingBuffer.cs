@@ -10,6 +10,7 @@ public class TowerRingBuffer : MonoBehaviour
     [SerializeField]
     public int placeableTowerLimit = 4;
 
+    //our ring buffer is actually a queue at the end of the day
     Queue<TowerController> ringBuffer = new Queue<TowerController>();
 
 
@@ -30,9 +31,11 @@ public class TowerRingBuffer : MonoBehaviour
     private void InstantiateNewTower(Waypointer spaceToPlace)
     {
         TowerController newTower = Instantiate(placeableTower, spaceToPlace.transform.position, Quaternion.identity);
-        ringBuffer.Enqueue(newTower);
+        TowerRingBuffer hierarchyTidier = FindObjectOfType<TowerRingBuffer>();
+        newTower.transform.parent = hierarchyTidier.transform;
         newTower.blockThatTowerOccupies = spaceToPlace;
         spaceToPlace.isPlayerInteractive = false;
+        ringBuffer.Enqueue(newTower);
     }
 
     private void RequeueExistingTower(Waypointer newSpaceToPlace)
