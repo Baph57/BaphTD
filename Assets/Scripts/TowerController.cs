@@ -14,7 +14,7 @@ public class TowerController : MonoBehaviour
 
 	//state of each tower
 	Transform targetEnemy;
-
+    public Waypointer blockThatTowerOccupies;
 
 	// Update is called once per frame
 	void Update()

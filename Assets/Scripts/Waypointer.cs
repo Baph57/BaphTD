@@ -62,7 +62,6 @@ public class Waypointer : MonoBehaviour
             {
                 //implementation of ring buffer for max tower placement
                 towerRingBuffer.PlaceTower(this);
-                isPlayerInteractive = false;
                 print("Transform: " + gameObject.transform);
             }
             else
