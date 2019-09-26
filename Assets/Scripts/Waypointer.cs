@@ -14,7 +14,6 @@ public class Waypointer : MonoBehaviour
     public Waypointer previouslyAccessedWaypoint;
     //SerializeField may be better for tower to prevent
     //other classes from accessing this GameObject
-    // public TowerController placeableTower;
 
     [SerializeField]
     public TowerRingBuffer towerRingBuffer;
@@ -23,6 +22,36 @@ public class Waypointer : MonoBehaviour
     Vector2Int gridPosition;
     const int gridSize = 10;
 
+    MeshRenderer[] testerHelp;
+    MeshRenderer blueBlock;
+    MeshRenderer redBlock;
+
+
+
+    private void Start()
+    {
+        testerHelp = GetComponentsInChildren<MeshRenderer>();
+        blueBlock = testerHelp[0];
+        redBlock = testerHelp[1];
+
+    }
+
+    void Update()
+    {
+        ColorizeBlocks();
+    }
+
+    public MeshRenderer ColorizeBlocks(MeshRenderer blu, MeshRenderer red)
+    {
+        if (isPlayerInteractive)
+        {
+            red = Destroy.red;
+            print(testerHelp[0]);
+            print(testerHelp[1]);
+            //testerHelp[0].GetComponentInChildren<MeshRenderer>().isVisible(false);
+
+        }
+    }
 
     public int GetGridSize()
     {
@@ -50,6 +79,7 @@ public class Waypointer : MonoBehaviour
 
     public void SetTopColor(Color color)
     {
+        print(isPlayerInteractive);
         MeshRenderer topBlockMeshRenderer = transform.Find("Y+Plane").GetComponent<MeshRenderer>();
         topBlockMeshRenderer.material.color = color;
     }
